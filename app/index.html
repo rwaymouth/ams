@@ -61,21 +61,21 @@
     </div>
 
     <div id="app--listing">
-      <table class="phone--list">
+      <table class="phone--list tablesaw tablesaw-stack" data-tablesaw-mode="stack">
         <thead class="list--categories">
           <tr class="list--entry">
-            <td class="entry--item">
+            <th class="entry--item">
               Last Name
-            </td>
-            <td class="entry--item">
+            </th>
+            <th class="entry--item">
               First Name
-            </td>
-            <td class="entry--item">
+            </th>
+            <th class="entry--item">
               Telephone
-            </td>
-            <td class="entry--item">
+            </th>
+            <th class="entry--item">
               Actions
-            </td>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -123,8 +123,10 @@
   <!-- endbuild -->
 
   <!-- build:js scripts/main.js -->
+  <script src="scripts/tablesaw.stackonly.js "></script>
   <script src="scripts/main.js "></script>
   <!-- endbuild -->
+
 </body>
 
 </html>

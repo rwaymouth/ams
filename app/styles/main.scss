@@ -3,6 +3,7 @@
 @import 'vendor/neat/neat';
 @import 'vendor/bitters/base';
 @import 'custom/variables';
+@import 'vendor/tablesaw/_tablesaw.bare.scss';
 
 .app--header {
     background-color: $header;
@@ -50,9 +51,6 @@ main {
     margin: auto;
 }
 
-.hidden {
-    display: none;
-}
 
 .modal {
     width: 100vw;
@@ -60,8 +58,20 @@ main {
     top: 0;
     left: 0;
     position: absolute;
-    z-index: 10;
     background-color: rgba(gray, 0.3);
+    z-index: 10;
+}
+
+.hidden {
+    opacity: 0;
+    top: -100vh;
+    transition: opacity 1s, top 0.7s;
+    transition-delay: opacity 1s, top 1s;
+    background: transparent; 
+   
+    .input--wrap {
+       top: -100vh; 
+    }
 }
 
 .modal--cancel {
@@ -73,6 +83,7 @@ main {
 .input--wrap {
     background: $header;
     @include outer-container;
+    transition: 0.33s;
     position: absolute;
     top: 0;
     bottom: 25%;
