@@ -321,6 +321,7 @@ function submitData(data, action) {
     success: function(response) {
       var entry = JSON.parse(response)[0];
       data.id = entry.entryID;
+      console.log(entry);
       var spot = entry.allIDs.indexOf(data.id);
       addPerson(data, spot);
       listenForDelete();

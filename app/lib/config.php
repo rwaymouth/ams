@@ -26,7 +26,7 @@
     $stmt->execute();
     $list = array();
     while($row = $stmt->fetch()) {
-       array_push($list, $row);
+       array_push($list, $row[0]);
     }
     $entry = array(
       array(
