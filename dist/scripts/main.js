@@ -355,10 +355,11 @@ function addPerson(data, spot) {
   html += '<td class="entry--item">' + data.phone + '</td>';
   html += '<td class="entry--item"><button class="remove--person ">X</button></td>';
   var selector = '.phone--list >tbody tr:nth-child('+spot+')';
-  if (spot !== 0) {
+  console.log(spot);
+  if (spot > 0) {
     $(selector).after(html);
   } else {
-    $('.phone--list > tbody tr:first-child').before(html); 
+    $('.phone--list > tbody').prepend(html);
   }
   $('.tablesaw').trigger('tablesaw.enhance');
 }

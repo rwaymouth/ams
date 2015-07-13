@@ -1,5 +1,9 @@
 <?php
-  $conn = new PDO('mysql:dbname=ams; host=localhost', 'root', null);
+  include 'db-settings.php';
+  $db = 'mysql:dbname='.$config["dbname"].'; host='.$config["hostname"];
+  $user = $config["dbuser"];
+  $login = $config["dbpassword"];
+  $conn = new PDO($db, $user, $login);
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $stmt = $conn->prepare('SELECT * FROM person ORDER BY lastName');
   $stmt->execute();
@@ -22,7 +26,7 @@
     $stmt->execute();
     $list = array();
     while($row = $stmt->fetch()) {
-       array_push($list, $row[0]);
+       array_push($list, $row);
     }
     $entry = array(
       array(
