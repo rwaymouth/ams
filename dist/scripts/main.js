@@ -319,8 +319,10 @@ function submitData(data, action) {
     type: 'post',
     data: data,
     success: function(response) {
-      data.id = response;
-      addPerson(data);
+      var entry = JSON.parse(response)[0];
+      data.id = entry.entryID;
+      var spot = entry.allIDs.indexOf(data.id);
+      addPerson(data, spot);
       listenForDelete();
     },
     error: function error(xhr, desc, err) {
@@ -346,13 +348,18 @@ function deleteData(data, action) {
   });
 }
 
-function addPerson(data) {
+function addPerson(data, spot) {
   var html = '<tr id="person-' + data.id + '" class="list--entry">';
   html += '<td class="entry--item">' + data.lastName + '</td>';
   html += '<td class="entry--item">' + data.firstName + '</td>';
   html += '<td class="entry--item">' + data.phone + '</td>';
   html += '<td class="entry--item"><button class="remove--person ">X</button></td>';
-  $('.phone--list > tbody').append(html);
+  var selector = '.phone--list >tbody tr:nth-child('+spot+')';
+  if (spot !== 0) {
+    $(selector).after(html);
+  } else {
+    $('.phone--list > tbody tr:first-child').before(html); 
+  }
   $('.tablesaw').trigger('tablesaw.enhance');
 }
 

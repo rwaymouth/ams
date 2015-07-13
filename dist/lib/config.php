@@ -18,7 +18,20 @@
     $stmt = $conn->prepare('SELECT LAST_INSERT_ID() FROM person');
     $stmt->execute();
     $data = $stmt->fetch();
-    echo $data[0];
+    $stmt = $conn->prepare('SELECT * FROM person ORDER BY lastName');
+    $stmt->execute();
+    $list = array();
+    while($row = $stmt->fetch()) {
+       array_push($list, $row[0]);
+    }
+    $entry = array(
+      array(
+        'entryID' => $data[0],
+        'allIDs' => $list
+      )
+    );
+
+    echo json_encode($entry);
   }
 
   if(!empty($_POST['action']) && $_POST['action'] == "delete") {
